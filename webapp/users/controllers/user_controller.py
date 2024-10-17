@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify, session
 from users.models.user_model import Users
-from users.models.db import db
+from db.db import db
 
 user_controller = Blueprint('user_controller', __name__)
 

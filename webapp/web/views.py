@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, url_for
 from users.controllers.user_controller import user_controller
 from products.controllers.product_controller import product_controller  # Tu controlador de productos
-from users.models.db import db
+from db.db import db
 
 app = Flask(__name__)
 app.config.from_object('config.Config')

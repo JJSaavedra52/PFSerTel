@@ -1,6 +1,6 @@
 
-CREATE DATABASE myflaskapp;
-use myflaskapp;
+CREATE DATABASE project;
+use project;
 
 CREATE TABLE users (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -15,11 +15,16 @@ INSERT INTO users VALUES(null, "juan", "juan@gmail.com", "juan", "123"),
     (null, "maria", "maria@gmail.com", "maria", "456");
 
 -- Create the products table
-CREATE TABLE products (
-    ref varchar(255) PRIMARY KEY,
-    name varchar(255) NOT NULL,
-    price float NOT NULL,
-    description varchar(255)
+CREATE TABLE books (
+    code varchar(255) PRIMARY KEY,
+    userid int NOT NULL,
+    title varchar(255) NOT NULL,
+    author varchar(255) NOT NULL,
+    year int NOT NULL,
+    synopsis varchar(255) NOT NULL,
+    editorial varchar(255) NOT NULL,
+    description varchar(255),
+    FOREIGN KEY (userid) REFERENCES users(id)
 );
 
 -- Insert example products
