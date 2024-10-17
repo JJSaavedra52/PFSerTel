@@ -9,31 +9,31 @@ book_controller = Blueprint('book_controller', __name__)
 def get_books():
     print("listado de libros")
     books = Book.query.all()
-    result = [{'code': book.code, 'userid': book.userid, 'title': book.title, 'author': book.author, 'year': book.year, 'synopsis': book.synopsis, 'editorial': book.editorial} for book in books]
+    result = [{'id': book.id, 'userid': book.userid, 'title': book.title, 'author': book.author, 'year': book.year, 'synopsis': book.synopsis, 'editorial': book.editorial} for book in books]
     return jsonify(result)
 
 # Obtener un libro por código
-@book_controller.route('/api/books/<string:code>', methods=['GET'])
-def get_book(code):
+@book_controller.route('/api/books/<string:id>', methods=['GET'])
+def get_book(id):
     print("obteniendo libro")
-    book = Book.query.get_or_404(code)
-    return jsonify({'code': book.code, 'userid': book.userid, 'title': book.title, 'author': book.author, 'year': book.year, 'synopsis': book.synopsis, 'editorial': book.editorial})
+    book = Book.query.get_or_404(id)
+    return jsonify({'id': book.id, 'userid': book.userid, 'title': book.title, 'author': book.author, 'year': book.year, 'synopsis': book.synopsis, 'editorial': book.editorial})
 
 # Crear un nuevo libro
 @book_controller.route('/api/books', methods=['POST'])
 def create_book():
     print("creando libro")
     data = request.json
-    new_book = Book(code=data['code'], userid=data['userid'], title=data['title'], author=data['author'], year=data['year'], synopsis=data['synopsis'], editorial=data['editorial'])
+    new_book = Book(id=data['id'], userid=data['userid'], title=data['title'], author=data['author'], year=data['year'], synopsis=data['synopsis'], editorial=data['editorial'])
     db.session.add(new_book)
     db.session.commit()
     return jsonify({'message': 'Libro creado exitosamente'}), 201
 
 # Actualizar un libro existente
-@book_controller.route('/api/books/<string:code>', methods=['PUT'])
-def update_book(code):
+@book_controller.route('/api/books/<string:id>', methods=['PUT'])
+def update_book(id):
     print("actualizando libro")
-    book = Book.query.get_or_404(code)
+    book = Book.query.get_or_404(id)
     data = request.json
     book.userid = data['userid']
     book.title = data['title']
@@ -45,9 +45,9 @@ def update_book(code):
     return jsonify({'message': 'Libro actualizado exitosamente'})
 
 # Eliminar un libro existente
-@book_controller.route('/api/books/<string:code>', methods=['DELETE'])
-def delete_book(code):
-    book = Book.query.get_or_404(code)
+@book_controller.route('/api/books/<string:id>', methods=['DELETE'])
+def delete_book(id):
+    book = Book.query.get_or_404(id)
     db.session.delete(book)
     db.session.commit()
     return jsonify({'message': 'Libro eliminado exitosamente'})

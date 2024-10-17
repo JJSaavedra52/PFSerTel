@@ -3,7 +3,7 @@ from db.db import db
 class Book(db.Model):
     __tablename__ = 'books'
 
-    code = db.Column(db.String, primary_key=True)
+    id = db.Column(db.String, primary_key=True)
     userid = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     title = db.Column(db.String, nullable=False)
     author = db.Column(db.String, nullable=True)
@@ -11,8 +11,8 @@ class Book(db.Model):
     synopsis = db.Column(db.String, nullable=True)
     editorial = db.Column(db.String, nullable=True)
 
-    def __init__(self, code, userid, title, author, year, synopsis, editorial):
-        self.code = code
+    def __init__(self, id, userid, title, author, year, synopsis, editorial):
+        self.id = id
         self.userid = userid
         self.title = title
         self.author = author
