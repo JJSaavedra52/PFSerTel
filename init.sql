@@ -14,7 +14,7 @@ INSERT INTO users VALUES(null, "juan", "123"),
 
 -- Create the products table
 CREATE TABLE books (
-    code int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     userid int NOT NULL,
     title varchar(255) NOT NULL,
     author varchar(255) NOT NULL,
@@ -26,6 +26,5 @@ CREATE TABLE books (
 );
 
 -- Insert example products
-INSERT INTO books (null, userid, title, author, year, synopsis, editorial, description) VALUES
-(null, 1, 'Tiempo de fantasía', 'Alfonso Filadelphia', 2012, 'El protagonista está en un mundo de fantasía', 'Libros del valle', 'Buen libro'),
+INSERT INTO books VALUES(null, 1, 'Tiempo de fantasía', 'Alfonso Filadelphia', 2012, 'El protagonista está en un mundo de fantasía', 'Libros del valle', 'Buen libro'),
 (null, 2, 'Cuentos para dormir', 'Alex', 2024, 'Varios cuentos con mucho texto', 'Librería del valle' , 'Libro aceptable');
