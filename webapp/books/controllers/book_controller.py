@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from users.models.db import db
+from db.db import db
 from books.models.book_model import Book
 
 book_controller = Blueprint('book_controller', __name__)
