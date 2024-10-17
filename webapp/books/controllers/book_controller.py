@@ -24,7 +24,7 @@ def get_book(id):
 def create_book():
     print("creando libro")
     data = request.json
-    new_book = Book(id=data['id'], userid=data['userid'], title=data['title'], author=data['author'], year=data['year'], synopsis=data['synopsis'], editorial=data['editorial'])
+    new_book = Book(userid=data['userid'], title=data['title'], author=data['author'], year=data['year'], synopsis=data['synopsis'], editorial=data['editorial'])
     db.session.add(new_book)
     db.session.commit()
     return jsonify({'message': 'Libro creado exitosamente'}), 201
