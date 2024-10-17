@@ -1,50 +1,53 @@
 from flask import Blueprint, request, jsonify
-from products.models.product_model import Product
 from users.models.db import db
+from books.models.book_model import Book
 
-product_controller = Blueprint('product_controller', __name__)
+book_controller = Blueprint('book_controller', __name__)
 
-# Obtener todos los productos
-@product_controller.route('/api/products', methods=['GET'])
-def get_products():
-    print("listado de productos")
-    products = Product.query.all()
-    result = [{'ref': product.ref, 'name': product.name, 'price': product.price, 'description': product.description} for product in products]
+# Obtener todos los libros
+@book_controller.route('/api/books', methods=['GET'])
+def get_books():
+    print("listado de libros")
+    books = Book.query.all()
+    result = [{'code': book.code, 'userid': book.userid, 'title': book.title, 'author': book.author, 'year': book.year, 'synopsis': book.synopsis, 'editorial': book.editorial} for book in books]
     return jsonify(result)
 
-# Obtener un producto por referencia
-@product_controller.route('/api/products/<string:ref>', methods=['GET'])
-def get_product(ref):
-    print("obteniendo producto")
-    product = Product.query.get_or_404(ref)
-    return jsonify({'ref': product.ref, 'name': product.name, 'price': product.price, 'description': product.description})
+# Obtener un libro por código
+@book_controller.route('/api/books/<string:code>', methods=['GET'])
+def get_book(code):
+    print("obteniendo libro")
+    book = Book.query.get_or_404(code)
+    return jsonify({'code': book.code, 'userid': book.userid, 'title': book.title, 'author': book.author, 'year': book.year, 'synopsis': book.synopsis, 'editorial': book.editorial})
 
-# Crear un nuevo producto
-@product_controller.route('/api/products', methods=['POST'])
-def create_product():
-    print("creando producto")
+# Crear un nuevo libro
+@book_controller.route('/api/books', methods=['POST'])
+def create_book():
+    print("creando libro")
     data = request.json
-    new_product = Product(ref=data['ref'], name=data['name'], price=data['price'], description=data['description'])
-    db.session.add(new_product)
+    new_book = Book(code=data['code'], userid=data['userid'], title=data['title'], author=data['author'], year=data['year'], synopsis=data['synopsis'], editorial=data['editorial'])
+    db.session.add(new_book)
     db.session.commit()
-    return jsonify({'message': 'Producto creado exitosamente'}), 201
+    return jsonify({'message': 'Libro creado exitosamente'}), 201
 
-# Actualizar un producto existente
-@product_controller.route('/api/products/<string:ref>', methods=['PUT'])
-def update_product(ref):
-    print("actualizando producto")
-    product = Product.query.get_or_404(ref)
+# Actualizar un libro existente
+@book_controller.route('/api/books/<string:code>', methods=['PUT'])
+def update_book(code):
+    print("actualizando libro")
+    book = Book.query.get_or_404(code)
     data = request.json
-    product.name = data['name']
-    product.price = data['price']
-    product.description = data['description']
+    book.userid = data['userid']
+    book.title = data['title']
+    book.author = data['author']
+    book.year = data['year']
+    book.synopsis = data['synopsis']
+    book.editorial = data['editorial']
     db.session.commit()
-    return jsonify({'message': 'Producto actualizado exitosamente'})
+    return jsonify({'message': 'Libro actualizado exitosamente'})
 
-# Eliminar un producto existente
-@product_controller.route('/api/products/<string:ref>', methods=['DELETE'])
-def delete_product(ref):
-    product = Product.query.get_or_404(ref)
-    db.session.delete(product)
+# Eliminar un libro existente
+@book_controller.route('/api/books/<string:code>', methods=['DELETE'])
+def delete_book(code):
+    book = Book.query.get_or_404(code)
+    db.session.delete(book)
     db.session.commit()
-    return jsonify({'message': 'Producto eliminado exitosamente'})
+    return jsonify({'message': 'Libro eliminado exitosamente'})
