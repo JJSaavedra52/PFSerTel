@@ -8,7 +8,7 @@ user_controller = Blueprint('user_controller', __name__)
 def get_users():
     print("listado de usuarios")
     users = Users.query.all()
-    result = [{'id':user.id, 'name': user.name, 'email': user.email, 'username': user.username} for user in users]
+    result = [{'id':user.id, 'username': user.username} for user in users]
     return jsonify(result)
 
 # Get single user by id
@@ -16,14 +16,14 @@ def get_users():
 def get_user(user_id):
     print("obteniendo usuario")
     user = Users.query.get_or_404(user_id)
-    return jsonify({'id': user.id, 'name': user.name, 'email': user.email, 'username': user.username})
+    return jsonify({'id': user.id, 'username': user.username})
 
 @user_controller.route('/api/users', methods=['POST'])
 def create_user():
     print("creando usuario")
     data = request.json
     #new_user = Users(name="oscar", email="oscar@gmail", username="omondragon", password="123")
-    new_user = Users(name=data['name'], email=data['email'], username=data['username'], password=data['password'])
+    new_user = Users(username=data['username'], password=data['password'])
     db.session.add(new_user)
     db.session.commit()
     return jsonify({'message': 'User created successfully'}), 201
@@ -34,8 +34,6 @@ def update_user(user_id):
     print("actualizando usuario")
     user = Users.query.get_or_404(user_id)
     data = request.json
-    user.name = data['name']
-    user.email = data['email']
     user.username = data['username']
     user.password = data['password']
     db.session.commit()
