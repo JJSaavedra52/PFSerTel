@@ -4,19 +4,17 @@ use project;
 
 CREATE TABLE users (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name varchar(255),
-    email varchar(255),
-    username varchar(255),
+    username varchar(255) UNIQUE,
     password varchar(255)
 );
 
 
-INSERT INTO users VALUES(null, "juan", "juan@gmail.com", "juan", "123"),
-    (null, "maria", "maria@gmail.com", "maria", "456");
+INSERT INTO users VALUES(null, "juan", "123"),
+    (null, "maria", "456");
 
 -- Create the products table
 CREATE TABLE books (
-    code varchar(255) PRIMARY KEY,
+    code int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     userid int NOT NULL,
     title varchar(255) NOT NULL,
     author varchar(255) NOT NULL,
@@ -28,6 +26,6 @@ CREATE TABLE books (
 );
 
 -- Insert example products
-INSERT INTO products (ref, name, price, description) VALUES
-('P001', 'Product 1', 19.99, 'Description for Product 1'),
-('P002', 'Product 2', 29.99, 'Description for Product 2');
+INSERT INTO books (null, userid, title, author, year, synopsis, editorial, description) VALUES
+('B001', 1, 'Tiempo de fantasía', 'Alfonso Filadelphia', 2012, 'El protagonista está en un mundo de fantasía', 'Libros del valle', 'Buen libro'),
+('B002', 2, 'Cuentos para dormir', 'Alex', 2024, 'Varios cuentos con mucho texto', 'Librería del valle' , 'Libro aceptable');
