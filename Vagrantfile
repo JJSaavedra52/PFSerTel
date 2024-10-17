@@ -26,4 +26,4 @@ Vagrant.configure("2") do |config|
 #       loadBalancer.vm.network :private_network, ip: "192.168.50.30"
 #       loadBalancer.vm.hostname = "loadBalancer"
 #     end
-#   end  
+  end  
