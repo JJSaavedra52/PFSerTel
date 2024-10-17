@@ -27,5 +27,5 @@ CREATE TABLE books (
 
 -- Insert example products
 INSERT INTO books (null, userid, title, author, year, synopsis, editorial, description) VALUES
-('B001', 1, 'Tiempo de fantasía', 'Alfonso Filadelphia', 2012, 'El protagonista está en un mundo de fantasía', 'Libros del valle', 'Buen libro'),
-('B002', 2, 'Cuentos para dormir', 'Alex', 2024, 'Varios cuentos con mucho texto', 'Librería del valle' , 'Libro aceptable');
+(null, 1, 'Tiempo de fantasía', 'Alfonso Filadelphia', 2012, 'El protagonista está en un mundo de fantasía', 'Libros del valle', 'Buen libro'),
+(null, 2, 'Cuentos para dormir', 'Alex', 2024, 'Varios cuentos con mucho texto', 'Librería del valle' , 'Libro aceptable');
