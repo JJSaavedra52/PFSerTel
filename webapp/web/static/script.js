@@ -13,16 +13,6 @@ function getUsers() {
             data.forEach(user => {
                 var row = document.createElement('tr');
 
-                // Name
-                var nameCell = document.createElement('td');
-                nameCell.textContent = user.name;
-                row.appendChild(nameCell);
-
-                // Email
-                var emailCell = document.createElement('td');
-                emailCell.textContent = user.email;
-                row.appendChild(emailCell);
-
                 // Username
                 var usernameCell = document.createElement('td');
                 usernameCell.textContent = user.username;
@@ -59,8 +49,6 @@ function getUsers() {
 
 function createUser() {
     var data = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
         username: document.getElementById('username').value,
         password: document.getElementById('password').value
     };
