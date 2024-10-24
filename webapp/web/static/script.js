@@ -169,7 +169,7 @@ function loginUser() {
     })
     .then(data => {
         if (data.message === 'Login successful') {
-            window.location.href = `/mycomputers/${data.user_id}`; // Redirect to mycomputers page with user ID
+            window.location.href = `/books/${data.user_id}`; // Redirect to mycomputers page with user ID
         } else {
             alert('Login failed');
         }
