@@ -29,7 +29,7 @@ pip install Flask-SQLAlchemy
 
 # Install Apache2 to deploy
 echo "Installing Apache"
-sudo apt install apache2 -y
+sudo apt install apache2 libapache2-mod-wsgi-py3 -y
 
 #Run application
 # cd /home/vagrant/webapp
