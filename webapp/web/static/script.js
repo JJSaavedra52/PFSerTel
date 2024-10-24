@@ -91,8 +91,6 @@ function createUser() {
 function updateUser() {
     var userId = document.getElementById('user-id').value;
     var data = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
         username: document.getElementById('username').value,
         password: document.getElementById('password').value
     };
@@ -169,7 +167,7 @@ function loginUser() {
     })
     .then(data => {
         if (data.message === 'Login successful') {
-            window.location.href = `/books/${data.user_id}`; // Redirect to mycomputers page with user ID
+            window.location.href = `/books`;
         } else {
             alert('Login failed');
         }

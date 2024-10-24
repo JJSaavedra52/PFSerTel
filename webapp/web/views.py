@@ -12,7 +12,7 @@ app.register_blueprint(user_controller)
 app.register_blueprint(book_controller)  # Registrando el controlador de productos
 
 # Ruta para renderizar el template index.html
-@app.route('/')
+@app.route('/users')
 def index():
     return render_template('index.html')
 

@@ -46,14 +46,6 @@
         <h2>Add New User</h2>
         <form id="add-user-form">
             <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" required>
-            </div>
-            <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username" required>
             </div>
@@ -62,6 +54,7 @@
                 <input type="password" class="form-control" id="password" required>
             </div>
             <button type="button" onclick="createUser()">Create User</button>
+            <button type="button" onclick="fetch('/login')">Create User</button>
         </form>
     </div>
 
@@ -69,8 +62,6 @@
     <table id="user-list" class="table table-striped">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Email</th>
                 <th>Username</th>
                 <th>Actions</th>
             </tr>
