@@ -37,6 +37,12 @@
                 event.preventDefault();
                 createBook();
             });
+
+            document.getElementById('userBooksForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                var userId = document.getElementById('userId').value;
+                getBooksByUser(userId);
+            });
         });
     </script>
 </head>
@@ -96,6 +102,33 @@
             <tbody></tbody>
         </table>
         <button type="button" class="btn btn-secondary" onclick="getBooks()">Listar Libros</button>
+
+        <div class="form-container">
+            <h2>Buscar Libros por User ID</h2>
+            <form id="userBooksForm">
+                <div class="form-group">
+                    <label for="userId">User ID</label>
+                    <input type="number" class="form-control" id="userId" placeholder="User ID" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Buscar Libros</button>
+            </form>
+        </div>
+
+        <h2>Lista de Libros por User ID</h2>
+        <table id="user-book-list" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>Año</th>
+                    <th>Sinopsis</th>
+                    <th>Editorial</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
     </div>
 
     <script src="../static/script.js"></script>
