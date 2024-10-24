@@ -352,3 +352,77 @@ function updateBook() {
         console.error('Error:', error);
     });
 }
+
+// Fetch all books by a specific user
+function getBooksByUser(userId) {
+    fetch(`/api/books/users/${userId}`)
+        .then(response => response.json())
+        .then(data => {
+            // Handle data
+            console.log(data);
+
+            // Get table body
+            var bookListBody = document.querySelector('#book-list tbody');
+            bookListBody.innerHTML = ''; // Clear previous data
+
+            // Loop through books and populate table rows
+            data.forEach(book => {
+                var row = document.createElement('tr');
+
+                // ID
+                var idCell = document.createElement('td');
+                idCell.textContent = book.id;
+                row.appendChild(idCell);
+
+                // Title
+                var titleCell = document.createElement('td');
+                titleCell.textContent = book.title;
+                row.appendChild(titleCell);
+
+                // Author
+                var authorCell = document.createElement('td');
+                authorCell.textContent = book.author;
+                row.appendChild(authorCell);
+
+                // Year
+                var yearCell = document.createElement('td');
+                yearCell.textContent = book.year;
+                row.appendChild(yearCell);
+
+                // Synopsis
+                var synopsisCell = document.createElement('td');
+                synopsisCell.textContent = book.synopsis;
+                row.appendChild(synopsisCell);
+
+                // Editorial
+                var editorialCell = document.createElement('td');
+                editorialCell.textContent = book.editorial;
+                row.appendChild(editorialCell);
+
+                // Actions
+                var actionsCell = document.createElement('td');
+
+                // Edit link
+                var editLink = document.createElement('a');
+                editLink.href = `/editbook/${book.id}`;
+                editLink.textContent = 'Edit';
+                editLink.className = 'btn btn-primary mr-2';
+                actionsCell.appendChild(editLink);
+
+                // Delete link
+                var deleteLink = document.createElement('a');
+                deleteLink.href = '#';
+                deleteLink.textContent = 'Delete';
+                deleteLink.className = 'btn btn-danger';
+                deleteLink.addEventListener('click', function() {
+                    deleteBook(book.id);
+                });
+                actionsCell.appendChild(deleteLink);
+
+                row.appendChild(actionsCell);
+
+                bookListBody.appendChild(row);
+            });
+        })
+        .catch(error => console.error('Error:', error));
+}
