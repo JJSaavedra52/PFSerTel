@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, session
 from users.controllers.user_controller import user_controller
 from books.controllers.book_controller import book_controller 
 from db.db import db
@@ -21,14 +21,18 @@ def edit_user(id):
     print("id recibido", id)
     return render_template('edit.html', id=id)
 
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
 @app.route('/books')
-def products():
+def books():
     return render_template('books.html')
 
 @app.route('/editbook/<string:ref>')
-def edit_product(code):
-    print("Referencia recibida", code)
-    return render_template('editbook.html', code=code)
+def edit_book(id):
+    print("Referencia recibida", id)
+    return render_template('editbook.html', id=id)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')  # Escuchar en todas las direcciones IP

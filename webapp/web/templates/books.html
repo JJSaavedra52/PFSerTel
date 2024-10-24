@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis Productos</title>
+    <title>Mis Libros</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
@@ -17,32 +17,32 @@
             max-width: 500px;
             margin: 0 auto;
         }
-        .product-list {
+        .book-list {
             margin-top: 20px;
             list-style-type: none;
         }
-        .product-item {
+        .book-item {
             padding: 10px;
             margin-bottom: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
         }
-        .product-item a {
+        .book-item a {
             margin-right: 10px;
         }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('productForm').addEventListener('submit', function(event) {
+            document.getElementById('bookForm').addEventListener('submit', function(event) {
                 event.preventDefault();
-                createProduct();
+                createBook();
             });
         });
     </script>
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="#">Product Management</a>
+        <a class="navbar-brand" href="#">Book Management</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -50,42 +50,52 @@
 
     <div class="container">
         <div class="form-container">
-            <h2>Agregar Nuevo Producto</h2>
-            <form id="productForm">
+            <h2>Agregar Nuevo Libro</h2>
+            <form id="bookForm">
                 <div class="form-group">
-                    <label for="ref">Referencia</label>
-                    <input type="text" class="form-control" id="ref" placeholder="Referencia" required>
+                    <label for="userid">User ID</label>
+                    <input type="number" class="form-control" id="userid" placeholder="User ID" required>
                 </div>
                 <div class="form-group">
-                    <label for="name">Nombre</label>
-                    <input type="text" class="form-control" id="name" placeholder="Nombre" required>
+                    <label for="title">Título</label>
+                    <input type="text" class="form-control" id="title" placeholder="Título" required>
                 </div>
                 <div class="form-group">
-                    <label for="price">Precio</label>
-                    <input type="number" class="form-control" id="price" placeholder="Precio" required>
+                    <label for="author">Autor</label>
+                    <input type="text" class="form-control" id="author" placeholder="Autor" required>
                 </div>
                 <div class="form-group">
-                    <label for="description">Descripción</label>
-                    <input type="text" class="form-control" id="description" placeholder="Descripción">
+                    <label for="year">Año</label>
+                    <input type="number" class="form-control" id="year" placeholder="Año" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Crear Producto</button>
+                <div class="form-group">
+                    <label for="synopsis">Sinopsis</label>
+                    <input type="text" class="form-control" id="synopsis" placeholder="Sinopsis">
+                </div>
+                <div class="form-group">
+                    <label for="editorial">Editorial</label>
+                    <input type="text" class="form-control" id="editorial" placeholder="Editorial">
+                </div>
+                <button type="submit" class="btn btn-primary">Crear Libro</button>
             </form>
         </div>
 
-        <h2>Lista de Productos</h2>
-        <table id="product-list" class="table table-striped">
+        <h2>Lista de Libros</h2>
+        <table id="book-list" class="table table-striped">
             <thead>
                 <tr>
-                    <th>Referencia</th>
-                    <th>Nombre</th>
-                    <th>Precio</th>
-                    <th>Descripción</th>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>Año</th>
+                    <th>Sinopsis</th>
+                    <th>Editorial</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody></tbody>
         </table>
-        <button type="button" class="btn btn-secondary" onclick="getProducts()">Listar Productos</button>
+        <button type="button" class="btn btn-secondary" onclick="getBooks()">Listar Libros</button>
     </div>
 
     <script src="../static/script.js"></script>

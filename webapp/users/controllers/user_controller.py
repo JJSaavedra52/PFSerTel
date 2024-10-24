@@ -46,3 +46,14 @@ def delete_user(user_id):
     db.session.delete(user)
     db.session.commit()
     return jsonify({'message': 'User deleted successfully'})
+
+# Login user
+@user_controller.route('/api/login', methods=['POST'])
+def login():
+    data = request.json
+    user = Users.query.filter_by(username=data['username'], password=data['password']).first()
+    if user:
+        session['user_id'] = user.id
+        return jsonify({'message': 'Login successful', 'user_id': user.id})
+    else:
+        return jsonify({'message': 'Login failed'}), 401

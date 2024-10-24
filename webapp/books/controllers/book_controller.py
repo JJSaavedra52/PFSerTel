@@ -51,3 +51,10 @@ def delete_book(id):
     db.session.delete(book)
     db.session.commit()
     return jsonify({'message': 'Libro eliminado exitosamente'})
+
+# Get all books from a specific user
+@book_controller.route('/api/books/users/<int:id>', methods=['GET'])
+def get_user_books(id):
+    books = Book.query.filter_by(userid=id).all()
+    result = [{'id': book.id, 'userid': book.userid, 'title': book.title, 'author': book.author, 'year': book.year, 'synopsis': book.synopsis, 'editorial': book.editorial} for book in books]
+    return jsonify(result)

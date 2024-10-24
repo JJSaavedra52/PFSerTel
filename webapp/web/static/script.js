@@ -148,49 +148,92 @@ function deleteUser(userId) {
     }
 }
 
-// Product functions
-// Fetch all products
-function getProducts() {
-    fetch('/api/products')
+function loginUser() {
+    var data = {
+        username: document.getElementById('username').value,
+        password: document.getElementById('password').value
+    };
+
+    fetch('/api/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.message === 'Login successful') {
+            window.location.href = `/mycomputers/${data.user_id}`; // Redirect to mycomputers page with user ID
+        } else {
+            alert('Login failed');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+
+
+// Book functions
+// Fetch all books
+function getBooks() {
+    fetch('/api/books')
         .then(response => response.json())
         .then(data => {
             // Handle data
             console.log(data);
 
             // Get table body
-            var productListBody = document.querySelector('#product-list tbody');
-            productListBody.innerHTML = ''; // Clear previous data
+            var bookListBody = document.querySelector('#book-list tbody');
+            bookListBody.innerHTML = ''; // Clear previous data
 
-            // Loop through products and populate table rows
-            data.forEach(product => {
+            // Loop through books and populate table rows
+            data.forEach(book => {
                 var row = document.createElement('tr');
 
-                // Reference
-                var refCell = document.createElement('td');
-                refCell.textContent = product.ref;
-                row.appendChild(refCell);
+                // ID
+                var idCell = document.createElement('td');
+                idCell.textContent = book.id;
+                row.appendChild(idCell);
 
-                // Name
-                var nameCell = document.createElement('td');
-                nameCell.textContent = product.name;
-                row.appendChild(nameCell);
+                // Title
+                var titleCell = document.createElement('td');
+                titleCell.textContent = book.title;
+                row.appendChild(titleCell);
 
-                // Price
-                var priceCell = document.createElement('td');
-                priceCell.textContent = product.price;
-                row.appendChild(priceCell);
+                // Author
+                var authorCell = document.createElement('td');
+                authorCell.textContent = book.author;
+                row.appendChild(authorCell);
 
-                // Description
-                var descriptionCell = document.createElement('td');
-                descriptionCell.textContent = product.description;
-                row.appendChild(descriptionCell);
+                // Year
+                var yearCell = document.createElement('td');
+                yearCell.textContent = book.year;
+                row.appendChild(yearCell);
+
+                // Synopsis
+                var synopsisCell = document.createElement('td');
+                synopsisCell.textContent = book.synopsis;
+                row.appendChild(synopsisCell);
+
+                // Editorial
+                var editorialCell = document.createElement('td');
+                editorialCell.textContent = book.editorial;
+                row.appendChild(editorialCell);
 
                 // Actions
                 var actionsCell = document.createElement('td');
 
                 // Edit link
                 var editLink = document.createElement('a');
-                editLink.href = `/editproduct/${product.ref}`;
+                editLink.href = `/editbook/${book.id}`;
                 editLink.textContent = 'Edit';
                 editLink.className = 'btn btn-primary mr-2';
                 actionsCell.appendChild(editLink);
@@ -201,28 +244,30 @@ function getProducts() {
                 deleteLink.textContent = 'Delete';
                 deleteLink.className = 'btn btn-danger';
                 deleteLink.addEventListener('click', function() {
-                    deleteProduct(product.ref);
+                    deleteBook(book.id);
                 });
                 actionsCell.appendChild(deleteLink);
 
                 row.appendChild(actionsCell);
 
-                productListBody.appendChild(row);
+                bookListBody.appendChild(row);
             });
         })
         .catch(error => console.error('Error:', error));
 }
 
-// Create a new product
-function createProduct() {
+// Create a new book
+function createBook() {
     var data = {
-        ref: document.getElementById('ref').value,
-        name: document.getElementById('name').value,
-        price: document.getElementById('price').value,
-        description: document.getElementById('description').value
+        userid: document.getElementById('userid').value,
+        title: document.getElementById('title').value,
+        author: document.getElementById('author').value,
+        year: document.getElementById('year').value,
+        synopsis: document.getElementById('synopsis').value,
+        editorial: document.getElementById('editorial').value
     };
 
-    fetch('/api/products', {
+    fetch('/api/books', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -238,8 +283,8 @@ function createProduct() {
     .then(data => {
         // Handle success
         console.log(data);
-        // Optionally, reload the product list
-        getProducts();
+        // Optionally, reload the book list
+        getBooks();
     })
     .catch(error => {
         // Handle error
@@ -247,11 +292,11 @@ function createProduct() {
     });
 }
 
-// Delete a product
-function deleteProduct(ref) {
-    console.log('Deleting product with reference:', ref);
-    if (confirm('Are you sure you want to delete this product?')) {
-        fetch(`/api/products/${ref}`, {
+// Delete a book
+function deleteBook(id) {
+    console.log('Deleting book with ID:', id);
+    if (confirm('Are you sure you want to delete this book?')) {
+        fetch(`/api/books/${id}`, {
             method: 'DELETE',
         })
         .then(response => {
@@ -262,9 +307,9 @@ function deleteProduct(ref) {
         })
         .then(data => {
             // Handle success
-            console.log('Product deleted successfully:', data);
-            // Reload the product list
-            getProducts();
+            console.log('Book deleted successfully:', data);
+            // Reload the book list
+            getBooks();
         })
         .catch(error => {
             // Handle error
@@ -273,16 +318,19 @@ function deleteProduct(ref) {
     }
 }
 
-// Update a product
-function updateProduct() {
-    var productRef = document.getElementById('product-ref').value;
+// Update a book
+function updateBook() {
+    var bookId = document.getElementById('book-id').value;
     var data = {
-        name: document.getElementById('name').value,
-        price: document.getElementById('price').value,
-        description: document.getElementById('description').value
+        userid: document.getElementById('userid').value,
+        title: document.getElementById('title').value,
+        author: document.getElementById('author').value,
+        year: document.getElementById('year').value,
+        synopsis: document.getElementById('synopsis').value,
+        editorial: document.getElementById('editorial').value
     };
 
-    fetch(`/api/products/${productRef}`, {
+    fetch(`/api/books/${bookId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -298,8 +346,8 @@ function updateProduct() {
     .then(data => {
         // Handle success
         console.log(data);
-        // Optionally, reload the product list
-        getProducts();
+        // Optionally, reload the book list
+        getBooks();
     })
     .catch(error => {
         // Handle error
