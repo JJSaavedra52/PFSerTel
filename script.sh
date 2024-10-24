@@ -45,7 +45,7 @@ sudo bash -c 'cat > /var/www/webapp/application.wsgi <<EOF
 #!/usr/bin/python
 import sys
 sys.path.insert(0,"/var/www/webapp/")
-from app import app as application
+from run import app as application
 EOF'
 
 # Configure Apache

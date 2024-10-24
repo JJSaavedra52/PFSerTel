@@ -1,11 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f1ea;
+            font-family: 'Georgia', serif;
+            padding-top: 50px;
+        }
+
+        .container {
+            background-color: #fff8e1;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 400px;
+            margin: 0 auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #6b4226;
+            font-family: 'Garamond', serif;
+        }
+
+        label {
+            font-weight: bold;
+            color: #5a372b;
+        }
+
+        .form-control {
+            background-color: #fff3e0;
+            border: 1px solid #c7a98b;
+            color: #4a3728;
+        }
+
+        .form-control:focus {
+            border-color: #6b4226;
+            box-shadow: none;
+        }
+
+        button {
+            background-color: #6b4226;
+            border-color: #6b4226;
+            color: white;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #8b5e3c;
+        }
+    </style>
 </head>
+
 <body>
     <div class="container">
         <h2>Login</h2>
@@ -18,9 +69,11 @@
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" required>
             </div>
-            <button type="button" onclick="loginUser()">Login</button>
+            <button type="button" class="btn btn-primary" onclick="loginUser()">Login</button>
         </form>
     </div>
+    
     <script src="../static/script.js"></script>
 </body>
+
 </html>

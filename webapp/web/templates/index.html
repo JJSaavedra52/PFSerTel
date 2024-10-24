@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,36 +8,103 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
-            padding-top: 50px;
+            background-color: #f4f1ea;
+            font-family: 'Georgia', serif;
+            padding-top: 70px;
             padding-bottom: 20px;
         }
+
         .navbar {
             margin-bottom: 20px;
+            background-color: #6b4226;
         }
+
+        .navbar-brand {
+            font-family: 'Garamond', serif;
+            font-size: 24px;
+            color: #fff !important;
+        }
+
+        .navbar-toggler {
+            background-color: #fff3e0;
+        }
+
         .form-container {
             max-width: 500px;
             margin: 0 auto;
+            background-color: #fff8e1;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .user-list {
-            margin-top: 20px;
-            list-style-type: none;
+
+        h2 {
+            color: #6b4226;
+            font-family: 'Garamond', serif;
         }
+
+        label {
+            font-weight: bold;
+            color: #5a372b;
+        }
+
+        .form-control {
+            background-color: #fff3e0;
+            border: 1px solid #c7a98b;
+            color: #4a3728;
+        }
+
+        .form-control:focus {
+            border-color: #6b4226;
+            box-shadow: none;
+        }
+
+        button {
+            background-color: #6b4226;
+            border-color: #6b4226;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #8b5e3c;
+        }
+
+        .table {
+            background-color: #fff8e1;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th {
+            color: #5a372b;
+            background-color: #fff3e0;
+        }
+
         .user-item {
             padding: 10px;
             margin-bottom: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
+            background-color: #fff8e1;
         }
+
         .user-item a {
             margin-right: 10px;
+            color: #6b4226;
+        }
+
+        .user-item a:hover {
+            color: #8b5e3c;
         }
     </style>
 </head>
+
 <body>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand-md fixed-top">
     <a class="navbar-brand" href="#">User Management</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 </nav>
@@ -53,8 +121,8 @@
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" required>
             </div>
-            <button type="button" onclick="createUser()">Create User</button>
-            <button type="button" onclick="window.location.href='/login'">Login</button>
+            <button type="button" class="btn btn-primary" onclick="createUser()">Create User</button>
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='/login'">Login</button>
         </form>
     </div>
 
@@ -68,9 +136,10 @@
         </thead>
         <tbody></tbody>
     </table>
-    <button type="button" onclick="getUsers()">Get Users</button>
+    <button type="button" class="btn btn-primary" onclick="getUsers()">Get Users</button>
 </div>
 
 <script src="../static/script.js"></script>
 </body>
+
 </html>

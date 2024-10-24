@@ -6,29 +6,67 @@
     <title>Mis Libros</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+        /* Estilo del cuerpo */
         body {
             padding-top: 50px;
             padding-bottom: 20px;
+            font-family: 'Georgia', serif;
+            background-color: #f4f1ea; /* Fondo de tono suave */
         }
+        /* Navbar */
         .navbar {
+            background-color: #4b3f31; /* Marrón oscuro */
+            border-bottom: 3px solid #c5b19e;
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        /* Contenedores */
+        .form-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0ddd7;
+        }
+        /* Títulos */
+        h2 {
+            font-family: 'Times New Roman', serif;
+            color: #4b3f31;
             margin-bottom: 20px;
         }
-        .form-container {
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        .book-list {
-            margin-top: 20px;
-            list-style-type: none;
-        }
-        .book-item {
-            padding: 10px;
-            margin-bottom: 10px;
+        /* Lista de libros */
+        #book-list {
+            margin-top: 30px;
+            background-color: #fff;
             border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 8px;
         }
-        .book-item a {
-            margin-right: 10px;
+        /* Estilo de botones */
+        .btn-primary {
+            background-color: #6d5645; /* Marrón claro */
+            border-color: #6d5645;
+        }
+        .btn-secondary {
+            background-color: #4b3f31;
+            border-color: #4b3f31;
+        }
+        /* Inputs */
+        .form-control {
+            border: 1px solid #c5b19e;
+            border-radius: 4px;
+        }
+        /* Fondo de tabla */
+        table thead {
+            background-color: #6d5645;
+            color: white;
+        }
+        /* Estilo de los items */
+        table tr:hover {
+            background-color: #e8e5de;
         }
     </style>
     <script>
@@ -47,13 +85,15 @@
     </script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand" href="#">Book Management</a>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+        <a class="navbar-brand" href="#">Gestión de Libros</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
     </nav>
 
+    <!-- Contenido principal -->
     <div class="container">
         <div class="form-container">
             <h2>Agregar Nuevo Libro</h2>
@@ -85,7 +125,6 @@
                 <button type="submit" class="btn btn-primary">Crear Libro</button>
             </form>
         </div>
-        <br>
         <hr>
         <div class="form-container">
             <h2>Buscar Libros por User ID</h2>
