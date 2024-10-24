@@ -85,24 +85,8 @@
                 <button type="submit" class="btn btn-primary">Crear Libro</button>
             </form>
         </div>
-
-        <h2>Lista de Libros</h2>
-        <table id="book-list" class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Título</th>
-                    <th>Autor</th>
-                    <th>Año</th>
-                    <th>Sinopsis</th>
-                    <th>Editorial</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-        <button type="button" class="btn btn-secondary" onclick="getBooks()">Listar Libros</button>
-
+        <br>
+        <hr>
         <div class="form-container">
             <h2>Buscar Libros por User ID</h2>
             <form id="userBooksForm">
@@ -110,12 +94,13 @@
                     <label for="userId">User ID</label>
                     <input type="number" class="form-control" id="userId" placeholder="User ID" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Buscar Libros</button>
+                <button type="submit" class="btn btn-secondary">Buscar Libros</button>
+                <button type="button" class="btn btn-secondary" onclick="getBooks()">Listar todos los Libros</button>
             </form>
         </div>
 
-        <h2>Lista de Libros por User ID</h2>
-        <table id="user-book-list" class="table table-striped">
+        <h2>Lista de Libros</h2>
+        <table id="book-list" class="table table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
