@@ -19,12 +19,17 @@ echo "Adding permissions to remote access"
 sudo sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mysql/mysql.conf.d/mysqld.cnf
 sudo systemctl restart mysql.service
 
-# Instal Python Flask and Flask-MySQLdb
+# Install Python Flask and Flask-MySQLdb
+echo "Installing Python and dependencies"
 sudo apt install python3-dev default-libmysqlclient-dev build-essential pkg-config mysql-client python3-pip -y
 pip3 install Flask==2.3.3
 pip3 install flask-cors
 pip3 install Flask-MySQLdb
 pip install Flask-SQLAlchemy
+
+# Install Apache2 to deploy
+echo "Installing Apache"
+sudo apt install apache2 -y
 
 #Run application
 # cd /home/vagrant/webapp

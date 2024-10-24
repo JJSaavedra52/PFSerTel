@@ -20,10 +20,10 @@ Vagrant.configure("2") do |config|
       webServer2.vm.provision "shell", path: "script.sh"
       webServer2.vm.hostname = "webServer2"
     end
+  end  
   
 #     config.vm.define :loadBalancer do |loadBalancer|
 #       loadBalancer.vm.box = "bento/ubuntu-22.04"
 #       loadBalancer.vm.network :private_network, ip: "192.168.50.30"
 #       loadBalancer.vm.hostname = "loadBalancer"
 #     end
-  end  
