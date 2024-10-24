@@ -51,10 +51,10 @@ EOF'
 # Configure Apache
 echo "Configuring Apache"
 sudo bash -c 'cat > /etc/apache2/sites-available/000-default.conf <<EOF
-<VirtualHost *:80>
-    WSGIScriptAlias / /var/www/webapp/application.wsgi
-    DocumentRoot /var/www/webapp
-    <Directory /var/www/webapp/>
+WSGIScriptAlias / /var/www/my-project/application.wsgi
+DocumentRoot /var/www/my-project
+<VirtualHost *>
+    <Directory /var/www/my-project/>
         Order deny,allow
         Allow from all
     </Directory>
