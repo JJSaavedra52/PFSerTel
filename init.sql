@@ -4,7 +4,7 @@ use project;
 
 CREATE TABLE users (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    username varchar(255) UNIQUE,
+    username varchar(255),
     password varchar(255)
 );
 
