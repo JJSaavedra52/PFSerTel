@@ -26,7 +26,7 @@ def create_user():
     new_user = Users(username=data['username'], password=data['password'])
     db.session.add(new_user)
     db.session.commit()
-    return jsonify({'message': 'User created successfully'}), 201
+    return jsonify({'id': new_user.id, 'message': 'User created successfully'}), 201
 
 # Update an existing user
 @user_controller.route('/api/users/<int:user_id>', methods=['PUT'])
