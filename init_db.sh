@@ -18,3 +18,7 @@ sudo mysql -h localhost -u root -proot < /home/vagrant/init.sql
 echo "Adding permissions to remote access"
 sudo sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mysql/mysql.conf.d/mysqld.cnf
 sudo systemctl restart mysql.service
+
+# Grant remote access to root user
+echo "Granting remote access to root user"
+sudo mysql -u root -proot -e "CREATE USER 'root'@'%' IDENTIFIED BY 'root'; GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION; FLUSH PRIVILEGES;"
