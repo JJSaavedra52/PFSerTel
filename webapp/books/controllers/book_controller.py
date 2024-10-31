@@ -35,7 +35,7 @@ def update_book(id):
     print("actualizando libro")
     book = Book.query.get_or_404(id)
     data = request.json
-    book.userid = data['userid']
+    # book.userid = data['userid']
     book.title = data['title']
     book.author = data['author']
     book.year = data['year']
