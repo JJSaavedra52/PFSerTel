@@ -32,7 +32,7 @@ Vagrant.configure("2") do |config|
     config.vm.define :dataBase do |dataBase|
       dataBase.vm.box = "bento/ubuntu-22.04"
       dataBase.vm.network :private_network, ip: "192.168.50.40"
-      webServer1.vm.provision "file", source: "init.sql", destination: "/home/vagrant/init.sql"
+      dataBase.vm.provision "file", source: "init.sql", destination: "/home/vagrant/init.sql"
       dataBase.vm.provision "shell", path: "init_db.sh"
       dataBase.vm.hostname = "dataBase"
     end
