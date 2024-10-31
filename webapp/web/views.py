@@ -33,7 +33,7 @@ def login():
 def books():
     return render_template('books.html')
 
-@app.route('/editbook/<string:ref>')
+@app.route('/editbook/<string:id>')
 def edit_book(id):
     print("Referencia recibida", id)
     return render_template('editbook.html', id=id)
