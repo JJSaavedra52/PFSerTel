@@ -27,7 +27,7 @@ def create_book():
     new_book = Book(userid=data['userid'], title=data['title'], author=data['author'], year=data['year'], synopsis=data['synopsis'], editorial=data['editorial'])
     db.session.add(new_book)
     db.session.commit()
-    return jsonify({'message': 'Libro creado exitosamente'}), 201
+    return jsonify({'id': new_book.id, 'message': 'Libro creado exitosamente'}), 201
 
 # Actualizar un libro existente
 @book_controller.route('/api/books/<string:id>', methods=['PUT'])
