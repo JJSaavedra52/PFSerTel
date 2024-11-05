@@ -7,6 +7,7 @@ Para poner en marcha este entorno de balanceo de carga, simplemente sigue estos 
 1. Ejecuta el comando `vagrant up` desde la raíz del proyecto. Esto configurará automáticamente:
    - **2 servidores web**
    - **1 servidor de balanceo de carga**
+   - **1 base de datos**
 
 ## Acceso a la Aplicación
 
